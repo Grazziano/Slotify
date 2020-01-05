@@ -23,6 +23,35 @@
             </p>
             <button type="submit" name="loginButton">Login</button>
         </form>
+
+        <form id="registerForm" action="register.php" method="post">
+            <h2>Create your free account</h2>
+            <p>
+                <label for="firstName">First Name</label>
+                <input id="firstName" name="firstName" type="text" placeholder="Bart" required>
+            </p>
+            <p>
+                <label for="lastName">Last name</label>
+                <input id="lastName" name="lastName" type="text" placeholder="Simpson" required>
+            </p>
+            <p>
+                <label for="email">E-mail</label>
+                <input id="email" name="email" type="email" placeholder="bart@mail.com" required>
+            </p>
+            <p>
+                <label for="confirmEmail">Confirm E-mail</label>
+                <input id="confirmEmail" name="confirmEmail" type="email" placeholder="bart@mail.com" required>
+            </p>
+            <p>
+                <label for="password">Password</label>
+                <input id="password" name="password" type="password" placeholder="********" required>
+            </p>
+            <p>
+                <label for="confirmPassword">Confirm Password</label>
+                <input id="confirmPassword" name="confirmPassword" type="password" placeholder="********" required>
+            </p>
+            <button type="submit" name="signUpButton">Sign Up</button>
+        </form>
     </div>
 
 </body>
