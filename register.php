@@ -1,3 +1,12 @@
+<?php
+if (isset($_POST['loginButton'])) {
+    //echo "Login button was pressed";
+}
+
+if (isset($_POST['registerButton'])) {
+    //echo "Register button was pressed";
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -50,7 +59,7 @@
                 <label for="confirmPassword">Confirm Password</label>
                 <input id="confirmPassword" name="confirmPassword" type="password" placeholder="********" required>
             </p>
-            <button type="submit" name="signUpButton">Sign Up</button>
+            <button type="submit" name="registerButton">Sign Up</button>
         </form>
     </div>
 
