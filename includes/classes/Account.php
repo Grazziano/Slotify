@@ -26,14 +26,33 @@ class Account
 
     private function validateFirstName($firstName)
     {
+        if (strlen($firstName) > 25 || strlen($firstName) < 2) {
+            array_push($this->errorArray, "Your first name must be between 2 and 25 characters");
+            return;
+        }
     }
 
     private function validateLastName($lastName)
     {
+        if (strlen($lastName) > 25 || strlen($lastName) < 2) {
+            array_push($this->errorArray, "Your last name must be between 2 and 25 characters");
+            return;
+        }
     }
 
     private function validateEmails($email, $confirmEmail)
     {
+        if ($email != $confirmEmail) {
+            array_push($this->errorArray, "Yours e-mails don't match");
+            return;
+        }
+
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            array_push($this->errorArray, "E-mail is invalid");
+            return;
+        }
+
+        // TODO: Check is username hasn't already been used
     }
 
     private function validatePasswords($password, $confirmPassword)
