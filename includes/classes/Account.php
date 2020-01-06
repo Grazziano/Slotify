@@ -19,8 +19,8 @@ class Account
         $this->validatePasswords($password, $confirmPassword);
 
         if (empty($this->errorArray) == true) {
-            // Insert into db
-            return insertUserDetails($username, $firstName, $lastName, $email, $password);
+            //Insert into db
+            return $this->insertUserDetails($username, $firstName, $lastName, $email, $password);
         } else {
             return false;
         }
@@ -40,7 +40,7 @@ class Account
         $profilePic = "assets/images/profile-pics/head_emerald.png";
         $date = date("Y-m-d");
 
-        $result = mysqli_query($this->con, "INSERT INTO users VALUES ('', '$username', '$firstName', '$lastName','$email','$encryptedPw', '$date', '$profilePic')");
+        $result = mysqli_query($this->con, "INSERT INTO users VALUES ('', '$username', '$firstName', '$lastName', '$email', '$encryptedPw', '$date', '$profilePic')");
 
         return $result;
     }
