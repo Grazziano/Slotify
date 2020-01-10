@@ -2,11 +2,11 @@
 include("includes/config.php");
 // session_destroy();
 
-if (isset($_SESSION['userLoggedIn'])) {
-    $userLoggedIn = $_SESSION['userLoggedIn'];
-} else {
-    header("Location: register.php");
-}
+// if (isset($_SESSION['userLoggedIn'])) {
+//     $userLoggedIn = $_SESSION['userLoggedIn'];
+// } else {
+//     header("Location: register.php");
+// }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,6 +29,18 @@ if (isset($_SESSION['userLoggedIn'])) {
                     <span class="albumLink">
                         <img src="" class="albumArtwork" alt="">
                     </span>
+
+                    <div class="trackInfo">
+
+                        <span class="trackName">
+                            <span>Happy Birthday</span>
+                        </span>
+
+                        <span class="artistName">
+                            <span>Grazziano</span>
+                        </span>
+
+                    </div>
                 </div>
             </div>
 
