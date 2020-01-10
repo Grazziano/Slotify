@@ -2,11 +2,11 @@
 include("includes/config.php");
 // session_destroy();
 
-if (isset($_SESSION['userLoggedIn'])) {
-    $userLoggedIn = $_SESSION['userLoggedIn'];
-} else {
-    header("Location: register.php");
-}
+// if (isset($_SESSION['userLoggedIn'])) {
+//     $userLoggedIn = $_SESSION['userLoggedIn'];
+// } else {
+//     header("Location: register.php");
+// }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,7 +31,7 @@ if (isset($_SESSION['userLoggedIn'])) {
             <div id="nowPlayingCenter">
                 <div class="content playerControls">
                     <div class="buttons">
-                        
+
                         <button class="controlButton shuffle" title="Shuffle Button">
                             <img src="assets/images/icons/shuffle.png" alt="Shuffle">
                         </button>
@@ -57,6 +57,13 @@ if (isset($_SESSION['userLoggedIn'])) {
                         </button>
 
                     </div>
+
+                    <div class="playbackBar">
+                        <span class="progressTime current">0.00</span>
+                        <div class="progressBar"></div>
+                        <span class="progressTime remaining">0.00</span>
+                    </div>
+
                 </div>
             </div>
 
