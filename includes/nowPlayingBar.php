@@ -17,7 +17,10 @@ $jsonArray = json_encode($resultArray);
     });
 
     function setTrack(trackId, newPlaylist, play) {
-
+        audioElement.setTrack("assets/music/bensound-dubstep.mp3");
+        if (play) {
+            audioElement.play();
+        }
     }
 </script>
 
