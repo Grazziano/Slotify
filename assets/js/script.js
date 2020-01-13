@@ -1,13 +1,30 @@
 var currentPlaylist = [];
 var audioElement;
 
+function formatTime(seconds) {
+    var time = Math.round(seconds);
+    var minutes = Math.floor(time / 60); // Rounds down
+    var seconds = time - minutes * 60;
+
+    // var extraZero;
+    // if (seconds < 10) {
+    //     extraZero = "0";
+    // } else {
+    //     extraZero = "";
+    // }
+    var extraZero = (seconds < 10) ? "0" : "";
+
+    return minutes + ":" + extraZero + seconds;
+}
+
 function Audio() {
     this.currentlyPlaying;
     this.audio = document.createElement('audio');
 
     this.audio.addEventListener("canplay", function() {
         // 'this' refers to the object that the event was called on 
-        $(".progressTime.remaining").text(this.duration);
+        var duration = formatTime(this.duration);
+        $(".progressTime.remaining").text(duration);
     });
 
     this.setTrack = function(track) {
