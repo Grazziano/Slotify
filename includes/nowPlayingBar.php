@@ -18,21 +18,17 @@ $jsonArray = json_encode($resultArray);
 
     function setTrack(trackId, newPlaylist, play) {
 
-        $.post("include/handelers/getSongJson.php", { songId: trackId }, function(data) {
+        $.post("includes/handlers/ajax/getSongJson.php", { songId: trackId }, function(data) {
             var track = JSON.parse(data);
-            // console.log(track);
-
             $(".trackName span").text(track.title);
 
-            $.post("include/handelers/getArtistJson.php", { artistId: track.artist }, function(data) {
+            $.post("includes/handlers/ajax/getArtistJson.php", { artistId: track.artist }, function(data) {
                 var artist = JSON.parse(data);
-                // console.logo(artist.name);
                 $(".artistName span").text(artist.name);
             });
 
-            $.post("include/handelers/getAlbumJson.php", { albumId: track.album }, function(data) {
+            $.post("includes/handlers/ajax/getAlbumJson.php", { albumId: track.album }, function(data) {
                 var album = JSON.parse(data);
-                // console.logo(album.artworkPath);
                 $(".albumLink img").attr("src", album.artworkPath);
             });
 
@@ -40,25 +36,27 @@ $jsonArray = json_encode($resultArray);
             playSong();
         });
 
-        if (play) {
+        if (play == true) {
             audioElement.play();
         }
+    }
 
-        function playSong() {
-            if(audioElement.audio.currentTime == 0){
-                $.post("includes/handlers/ajax/updatePlays.php", {songId: audioElement.currentlyPlaying.id});
-            } 
-
-            $(".controlButton.play").hide();
-            $(".controlButton.pause").show();
-            audioElement.play();
+    function playSong() {
+        if (audioElement.audio.currentTime == 0) {
+            $.post("includes/handlers/ajax/updatePlays.php", {
+                songId: audioElement.currentlyPlaying.id
+            });
         }
 
-        function pauseSong() {
-            $(".controlButton.play").show();
-            $(".controlButton.pause").hide();
-            audioElement.pause();
-        }
+        $(".controlButton.play").hide();
+        $(".controlButton.pause").show();
+        audioElement.play();
+    }
+
+    function pauseSong() {
+        $(".controlButton.play").show();
+        $(".controlButton.pause").hide();
+        audioElement.pause();
     }
 </script>
 
@@ -124,7 +122,6 @@ $jsonArray = json_encode($resultArray);
                     </div>
                     <span class="progressTime remaining">0.00</span>
                 </div>
-
             </div>
         </div>
 
@@ -139,9 +136,7 @@ $jsonArray = json_encode($resultArray);
                         <div class="progress"></div>
                     </div>
                 </div>
-
             </div>
         </div>
-
     </div>
 </div>

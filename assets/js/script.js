@@ -5,16 +5,21 @@ function Audio() {
     this.currentlyPlaying;
     this.audio = document.createElement('audio');
 
-    this.setTrack = function (track) {
+    this.audio.addEventListener("canplay", function() {
+        // 'this' refers to the object that the event was called on 
+        $(".progressTime.remaining").text(this.duration);
+    });
+
+    this.setTrack = function(track) {
         this.currentlyPlaying = track;
         this.audio.src = track.path;
     }
 
-    this.play = function () {
+    this.play = function() {
         this.audio.play();
     }
 
-    this.pause = function () {
+    this.pause = function() {
         this.audio.pause();
     }
 }
