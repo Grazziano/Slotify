@@ -19,7 +19,10 @@ $jsonArray = json_encode($resultArray);
     function setTrack(trackId, newPlaylist, play) {
 
         $.post("include/handelers/getSongJson.php", { songId: trackId }, function(data) {
-            console.log(data);
+            var track = JSON.parse(data);
+            console.log(track);
+            audioElement.setTrack(track.path);
+            audioElement.play();
         });
 
         if (play) {
