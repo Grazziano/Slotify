@@ -20,7 +20,16 @@ $jsonArray = json_encode($resultArray);
 
         $.post("include/handelers/getSongJson.php", { songId: trackId }, function(data) {
             var track = JSON.parse(data);
-            console.log(track);
+            // console.log(track);
+
+            $(".trackName span").text(track.title);
+
+            $.post("include/handelers/getArtistJson.php", { artistId: track.artist }, function(data) {
+                var artist = JSON.parse(data);
+                // console.logo(artist.name);
+                $(".artistName span").text(artist.name);
+            });
+
             audioElement.setTrack(track.path);
             audioElement.play();
         });
@@ -56,11 +65,11 @@ $jsonArray = json_encode($resultArray);
                 <div class="trackInfo">
 
                     <span class="trackName">
-                        <span>Happy Birthday</span>
+                        <span></span>
                     </span>
 
                     <span class="artistName">
-                        <span>Grazziano Fagundes</span>
+                        <span></span>
                     </span>
 
                 </div>
