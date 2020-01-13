@@ -10,16 +10,25 @@ $jsonArray = json_encode($resultArray);
 ?>
 
 <script>
-    console.log(<?php echo $jsonArray; ?>);
+    $(document).ready(function() {
+        currentPlaylist = <?php echo $jsonArray; ?>;
+        audioElement = new Audio();
+        setTrack(currentPlaylist[0], currentPlaylist, false);
+    });
+
+    function setTrack(trackId, newPlaylist, play) {
+
+    }
 </script>
 
 <div id="nowPlayingBarContainer">
+
     <div id="nowPlayingBar">
 
         <div id="nowPlayingLeft">
             <div class="content">
                 <span class="albumLink">
-                    <img src="" class="albumArtwork" alt="">
+                    <img src="https://i.ytimg.com/vi/rb8Y38eilRM/maxresdefault.jpg" class="albumArtwork">
                 </span>
 
                 <div class="trackInfo">
@@ -29,7 +38,7 @@ $jsonArray = json_encode($resultArray);
                     </span>
 
                     <span class="artistName">
-                        <span>Grazziano</span>
+                        <span>Grazziano Fagundes</span>
                     </span>
 
                 </div>
@@ -39,28 +48,27 @@ $jsonArray = json_encode($resultArray);
         <div id="nowPlayingCenter">
             <div class="content playerControls">
                 <div class="buttons">
-
-                    <button class="controlButton shuffle" title="Shuffle Button">
+                    <button class="controlButton shuffle" title="Shuffle button">
                         <img src="assets/images/icons/shuffle.png" alt="Shuffle">
                     </button>
 
-                    <button class="controlButton previous" title="Previous Button">
+                    <button class="controlButton previous" title="Previous button">
                         <img src="assets/images/icons/previous.png" alt="Previous">
                     </button>
 
-                    <button class="controlButton play" title="Play Button">
+                    <button class="controlButton play" title="Play button">
                         <img src="assets/images/icons/play.png" alt="Play">
                     </button>
 
-                    <button class="controlButton pause" title="Pause Button" style="display: none">
+                    <button class="controlButton pause" title="Pause button" style="display: none;">
                         <img src="assets/images/icons/pause.png" alt="Pause">
                     </button>
 
-                    <button class="controlButton next" title="Next Button">
+                    <button class="controlButton next" title="Next button">
                         <img src="assets/images/icons/next.png" alt="Next">
                     </button>
 
-                    <button class="controlButton repeat" title="Repeat Button">
+                    <button class="controlButton repeat" title="Repeat button">
                         <img src="assets/images/icons/repeat.png" alt="Repeat">
                     </button>
 
