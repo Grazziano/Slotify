@@ -14,6 +14,7 @@ $jsonArray = json_encode($resultArray);
         currentPlaylist = <?php echo $jsonArray; ?>;
         audioElement = new Audio();
         setTrack(currentPlaylist[0], currentPlaylist, false);
+        updateVolumeProgressBar(audioElement.audio);
 
         $(".playbackBar .progressBar").mousedown(function() {
             mouseDown = true;
@@ -21,7 +22,7 @@ $jsonArray = json_encode($resultArray);
 
         $(".playbackBar .progressBar").mousemove(function(e) {
             if (mouseDown == true) {
-                // Set time of song, depending on position of mouse
+                //Set time of song, depending on position of mouse
                 timeFromOffset(e, this);
             }
         });
