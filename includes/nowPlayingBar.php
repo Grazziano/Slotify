@@ -69,6 +69,12 @@ $jsonArray = json_encode($resultArray);
     }
 
     function nextSong() {
+        if (repeat == true) {
+            audioElement.setTime(0);
+            playSong();
+            return;
+        }
+
         if (currentIndex == currentPlaylist.lenght - 1) {
             currentIndex = 0;
         } else {
@@ -81,25 +87,20 @@ $jsonArray = json_encode($resultArray);
 
     function setTrack(trackId, newPlaylist, play) {
 
-        $.post("includes/handlers/ajax/getSongJson.php", {
-            songId: trackId
-        }, function(data) {
+        currentIndex = currentPlaylist.indexOf(trackId);
+        pauseSong();
 
-            currentIndex = currentPlaylist.indexOf(trackId);
+        $.post("includes/handlers/ajax/getSongJson.php", { songId: trackId }, function(data) {
 
             var track = JSON.parse(data);
             $(".trackName span").text(track.title);
 
-            $.post("includes/handlers/ajax/getArtistJson.php", {
-                artistId: track.artist
-            }, function(data) {
+            $.post("includes/handlers/ajax/getArtistJson.php", { artistId: track.artist }, function(data) {
                 var artist = JSON.parse(data);
                 $(".artistName span").text(artist.name);
             });
 
-            $.post("includes/handlers/ajax/getAlbumJson.php", {
-                albumId: track.album
-            }, function(data) {
+            $.post("includes/handlers/ajax/getAlbumJson.php", { albumId: track.album }, function(data) {
                 var album = JSON.parse(data);
                 $(".albumLink img").attr("src", album.artworkPath);
             });
@@ -175,7 +176,7 @@ $jsonArray = json_encode($resultArray);
                         <img src="assets/images/icons/pause.png" alt="Pause">
                     </button>
 
-                    <button class="controlButton next" title="Next button">
+                    <button class="controlButton next" title="Next button" onclick="nextSong()">
                         <img src="assets/images/icons/next.png" alt="Next">
                     </button>
 
