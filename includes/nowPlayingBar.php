@@ -131,6 +131,12 @@ $jsonArray = json_encode($resultArray);
         $(".controlButton.pause").hide();
         audioElement.pause();
     }
+
+    function setRepeat() {
+        repeat = !repeat;
+        var imageName = repeat ? "repeat-active.png" : "repeat.png";
+        $(".controlButton.repeat img").attr("src", "assets/images/icons/" + imageName);
+    }
 </script>
 
 <div id="nowPlayingBarContainer">
@@ -180,7 +186,7 @@ $jsonArray = json_encode($resultArray);
                         <img src="assets/images/icons/next.png" alt="Next">
                     </button>
 
-                    <button class="controlButton repeat" title="Repeat button">
+                    <button class="controlButton repeat" title="Repeat button" onclick="setRepeat()">
                         <img src="assets/images/icons/repeat.png" alt="Repeat">
                     </button>
 
