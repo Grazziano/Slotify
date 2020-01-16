@@ -77,6 +77,7 @@ $jsonArray = json_encode($resultArray);
     }
 
     function nextSong() {
+        // console.log(currentIndex);
         if (repeat == true) {
             audioElement.setTime(0);
             playSong();
@@ -91,6 +92,7 @@ $jsonArray = json_encode($resultArray);
 
         var trackToPlay = shuffle ? shufflePlaylist[currentIndex] : currentPlaylist[currentIndex];
         setTrack(trackToPlay, currentPlaylist, true);
+        // console.log(currentIndex);
     }
 
     function setRepeat() {
