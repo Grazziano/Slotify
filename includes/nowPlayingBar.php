@@ -96,6 +96,12 @@ $jsonArray = json_encode($resultArray);
 
     function setTrack(trackId, newPlaylist, play) {
 
+        if (newPlaylist != currentPlaylist) {
+            currentPlaylist = newPlaylist;
+            shufflePlaylist = currentPlaylist.slice();
+            shuffleArray(shufflePlaylist);
+        }
+
         currentIndex = currentPlaylist.indexOf(trackId);
         pauseSong();
 
@@ -157,6 +163,23 @@ $jsonArray = json_encode($resultArray);
         shuffle = !shuffle;
         var imageName = shuffle ? "shuffle-active.png" : "shuffle.png";
         $(".controlButton.shuffle img").attr("src", "assets/images/icons/" + imageName);
+
+        if(shuffle == true) {
+            // Randomize playlist
+            shuffleArray(shufflePlaylist);
+        } else {
+            // Shuffle has been deactivated, go back to regular playlist
+        }
+    }
+
+    function shuffleArray(a) {
+        var j, x, i;
+        for (i = a.lenght; i; i--) {
+            j = Math.floor(Math.random()*i);
+            x = a[i - 1];
+            a[i - 1] = a[j];
+            a[j] = x;
+        }
     }
 </script>
 
