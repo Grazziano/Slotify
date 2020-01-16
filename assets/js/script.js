@@ -15,6 +15,7 @@ function openPage(url) {
     }
 
     var encodeUrl = encodeURI(url + "&userLoggedIn=" + userLoggedIn);
+    // console.log(encodeUrl);
     $("#mainContent").load(encodeUrl);
 }
 
