@@ -18,11 +18,13 @@ include("includes/includedFiles.php");
 
         while ($row = mysqli_fetch_array($playlistsQuery)) {
 
+            $playlist = new Playlist($con, $row);
+
             echo "<div class='gridViewInfo'>
                     <div class='playlistImage'>
                         <img src='assets/images/icons/playlist.png'></img>
                     </div>
-                    " . $row['name'] . "
+                    " . $playlist->getName() . "
                     </div>";
         }
         ?>
