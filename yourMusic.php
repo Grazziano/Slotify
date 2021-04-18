@@ -20,7 +20,7 @@ include("includes/includedFiles.php");
 
             $playlist = new Playlist($con, $row);
 
-            echo "<div class='gridViewInfo'>
+            echo "<div class='gridViewInfo' role='link' tabindex='0' onClick='openPage(\"playlist.php?id=" . $playlist->getId() . "\")'>
                     <div class='playlistImage'>
                         <img src='assets/images/icons/playlist.png'></img>
                     </div>
