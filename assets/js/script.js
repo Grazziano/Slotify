@@ -33,7 +33,24 @@ function createPlaylist() {
     if (popup != null) {
         // console.log(alert);
         $.post("includes/handlers/ajax/createPlaylist.php", { name: popup, username: userLoggedIn })
-            .done(function(error) {
+            .done(function (error) {
+                if (error != "") {
+                    alert(error);
+                    return;
+                }
+                // do something when ajax returns
+                openPage("yourMusic.php");
+            });
+    }
+}
+
+function deletePlaylist(playlistId) {
+    var prompt = confirm("Are you sure you want to delete this playlist?");
+
+    if (prompt == true) {
+        // console.log("DELETE PLAYLIST");
+        $.post("includes/handlers/ajax/deletePlaylist.php", { playlistId: playlistId })
+            .done(function (error) {
                 if (error != "") {
                     alert(error);
                     return;
@@ -75,40 +92,40 @@ function Audio() {
     this.currentlyPlaying;
     this.audio = document.createElement('audio');
 
-    this.audio.addEventListener("ended", function() {
+    this.audio.addEventListener("ended", function () {
         nextSong();
     });
 
-    this.audio.addEventListener("canplay", function() {
+    this.audio.addEventListener("canplay", function () {
         //'this' refers to the object that the event was called on
         var duration = formatTime(this.duration);
         $(".progressTime.remaining").text(duration);
     });
 
-    this.audio.addEventListener("timeupdate", function() {
+    this.audio.addEventListener("timeupdate", function () {
         if (this.duration) {
             updateTimeProgressBar(this);
         }
     });
 
-    this.audio.addEventListener("volumechange", function() {
+    this.audio.addEventListener("volumechange", function () {
         updateVolumeProgressBar(this);
     });
 
-    this.setTrack = function(track) {
+    this.setTrack = function (track) {
         this.currentlyPlaying = track;
         this.audio.src = track.path;
     }
 
-    this.play = function() {
+    this.play = function () {
         this.audio.play();
     }
 
-    this.pause = function() {
+    this.pause = function () {
         this.audio.pause();
     }
 
-    this.setTime = function(seconds) {
+    this.setTime = function (seconds) {
         this.audio.currentTime = seconds;
     }
 }
